@@ -1,0 +1,59 @@
+{
+  "expo": {
+    "name": "Ludi",
+    "slug": "ludi",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FF6B6B"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ludi.app",
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "This app uses the microphone for voice interactions.",
+        "NSSpeechRecognitionUsageDescription": "This app uses speech recognition for educational activities."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#FF6B6B"
+      },
+      "package": "com.ludi.app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow Ludi to access your microphone for voice activities."
+        }
+      ],
+      "expo-font"
+    ],
+    "scheme": "ludi",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
+  }
+}

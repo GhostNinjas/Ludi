@@ -1,0 +1,52 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+build/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Mobile
+mobile/.expo/
+mobile/ios/
+mobile/android/
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Laravel
+backend/storage/*.key
+backend/storage/framework/
+backend/storage/logs/
+backend/bootstrap/cache/
+backend/public/storage
+backend/public/hot
+
+# Docker
+docker-compose.override.yml
+
+# Testing
+coverage/
+.phpunit.result.cache
+
+# Temporary
+tmp/
+temp/

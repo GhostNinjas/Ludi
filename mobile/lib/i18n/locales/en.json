@@ -1,0 +1,423 @@
+{
+  "common": {
+    "appName": "Ludi",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success!",
+    "ok": "OK"
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password",
+    "alreadyHaveAccount": "Already have an account?",
+    "dontHaveAccount": "Don't have an account?",
+    "loginSuccess": "Successfully logged in!",
+    "registerSuccess": "Account created successfully!",
+    "loginError": "Login error",
+    "registerError": "Registration error",
+    "invalidCredentials": "Invalid email or password",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Password must be at least 8 characters"
+  },
+  "home": {
+    "welcome": "Hello, {{name}}!",
+    "greeting": "Hello,",
+    "defaultChildName": "Child",
+    "continueWhere": "Continue where you left off",
+    "exploreActivities": "Explore Activities",
+    "abc": "ABC & Letters",
+    "numbers": "Numbers",
+    "colors": "Colors & Shapes",
+    "puzzles": "Puzzles",
+    "drawing": "Drawing",
+    "stories": "Stories",
+    "all": "All",
+    "years": "years"
+  },
+  "games": {
+    "startGame": "Start Game",
+    "pauseGame": "Pause",
+    "resumeGame": "Resume",
+    "exitGame": "Exit Game",
+    "wellDone": "Well Done!",
+    "tryAgain": "Try Again",
+    "stars": "Stars",
+    "accuracy": "Accuracy",
+    "time": "Time",
+    "level": "Level",
+    "common": {
+      "back": "← Back",
+      "backToHome": "Back to Home",
+      "playAgain": "Play Again",
+      "congratulations": "Congratulations!",
+      "levelCount": "Level {{level}}",
+      "clear": "Clear",
+      "reset": "🔄 Reset",
+      "undo": "Undo"
+    },
+    "simpleMath": {
+      "title": "Simple Math",
+      "instruction": "Solve the problem:",
+      "correct": "Correct!",
+      "tryAgain": "Try again",
+      "victoryMessage": "You got {{score}} out of {{total}} questions correct!",
+      "victoryPercentage": "{{percentage}}% correct"
+    },
+    "memory": {
+      "title": "Memory Game",
+      "moves": "Moves: {{moves}}",
+      "pairs": "Pairs: {{matched}}/{{total}}",
+      "victory": "You completed in {{moves}} moves!",
+      "instruction": "Find the pairs!"
+    },
+    "traceLetters": {
+      "title": "Trace Letters",
+      "wellDone": "Well done!",
+      "letterCompleted": "You traced the letter {{letter}}!",
+      "nextLetter": "Next Letter",
+      "backToMenu": "Back to Menu",
+      "instruction": "Trace the letter:"
+    },
+    "wordBuilder": {
+      "title": "Word Builder",
+      "instruction": "Build the word:",
+      "clear": "Clear",
+      "correct": "Correct word!",
+      "tryAgain": "Try again",
+      "victoryMessage": "You completed {{score}} words!"
+    },
+    "coloring": {
+      "title": "Coloring",
+      "chooseColor": "Choose a color:",
+      "clear": "Clear",
+      "colors": {
+        "red": "Red",
+        "blue": "Blue",
+        "yellow": "Yellow",
+        "green": "Green",
+        "orange": "Orange",
+        "purple": "Purple",
+        "pink": "Pink",
+        "brown": "Brown",
+        "black": "Black",
+        "white": "White"
+      }
+    },
+    "drawingBoard": {
+      "title": "Drawing Board",
+      "tools": "🎨 Tools",
+      "actions": "Actions",
+      "undo": "Undo",
+      "clearAll": "Clear All",
+      "brushThickness": "Brush Thickness",
+      "colors": "Colors",
+      "brushSizes": {
+        "thin": "Thin",
+        "medium": "Medium",
+        "thick": "Thick",
+        "veryThick": "Very Thick"
+      }
+    },
+    "colorMixer": {
+      "title": "Color Mixer 🌈",
+      "modes": {
+        "free": "🎨 Free",
+        "challenge": "🎯 Challenge"
+      },
+      "instructions": {
+        "free": "Choose two colors to mix!",
+        "challenge": "Create the challenge color!"
+      },
+      "challenge": "Challenge {{current}}/{{total}}",
+      "hint": "💡 Hint: Mix",
+      "points": "Points: {{score}}/{{total}}",
+      "primaryColors": "Primary Colors",
+      "colorPalette": "Color Palette",
+      "mixing": "Mixing",
+      "selectColors": "Select 2 to 3 colors above",
+      "thenMix": "Then click 'Mix Colors'",
+      "mixColors": "Mix Colors",
+      "result": "Result:",
+      "wellDone": "Well done!",
+      "completedAll": "You completed all {{total}} challenges!",
+      "finalScore": "Final score: {{score}}/{{total}}"
+    },
+    "musicCreator": {
+      "title": "Music Creator",
+      "help": "🎵 Help",
+      "recording": "🔴 Recording...",
+      "notesRecorded": "📼 {{count}} notes recorded",
+      "stop": "Stop",
+      "record": "Record",
+      "playing": "Playing...",
+      "play": "Play",
+      "clear": "Clear",
+      "instruments": "Instruments:"
+    },
+    "sequenceMemory": {
+      "title": "Remember Sequence",
+      "amazing": "Amazing!",
+      "completed": "You completed {{score}} sequences!",
+      "exceptionalMemory": "Exceptional memory!",
+      "almostThere": "Almost there!",
+      "instruction": "Watch the color sequence\nand repeat in the correct order!",
+      "start": "Start",
+      "level": "Level {{level}}",
+      "status": {
+        "watch": "Watch...",
+        "yourTurn": "Your turn!",
+        "prepare": "Get ready..."
+      },
+      "progress": "{{current}}/{{total}}"
+    },
+    "patternMatch": {
+      "title": "Patterns",
+      "amazing": "Amazing!",
+      "completed": "You completed {{matched}} of {{total}} patterns!",
+      "accuracy": "{{percentage}}% accuracy",
+      "instruction": "Complete the pattern!",
+      "chooseMissing": "Choose the missing piece:"
+    }
+  },
+  "profile": {
+    "createProfile": "Create Profile",
+    "editProfile": "Edit Profile",
+    "deleteProfile": "Delete Profile",
+    "childName": "Child's Name",
+    "ageRange": "Age Range",
+    "age1to2": "1-2 years",
+    "age3to4": "3-4 years",
+    "age5to6": "5-6 years",
+    "interests": "Interests",
+    "chooseAvatar": "Choose Avatar",
+    "streakDays": "{{count}} day streak"
+  },
+  "worksheets": {
+    "title": "Printable Worksheets",
+    "headerTitle": "Worksheets",
+    "comingSoon": "Coming soon!",
+    "description": "Here you will find activities to\nprint and do with your child",
+    "download": "Download",
+    "share": "Share",
+    "print": "Print",
+    "downloaded": "Downloaded!",
+    "tracing": "Tracing",
+    "coloring": "Coloring",
+    "counting": "Counting",
+    "matching": "Matching"
+  },
+  "parents": {
+    "parentalGate": "Parent Area",
+    "headerTitle": "For parents",
+    "verifyParent": "Answer to continue",
+    "mathQuestion": "What is {{a}} + {{b}}?",
+    "holdButton": "Hold for 3 seconds",
+    "confirmReset": "Are you sure you want to reset the child's profile?",
+    "childProfile": "Child's Profile",
+    "name": "Name",
+    "age": "Age",
+    "gender": "Gender",
+    "boy": "Boy",
+    "girl": "Girl",
+    "notInformed": "Not informed",
+    "interests": "Interests",
+    "selected": "selected",
+    "specialNeeds": "Special needs",
+    "none": "None",
+    "resetProfile": "Reset Profile",
+    "dashboard": "Dashboard",
+    "progress": "Progress",
+    "progressDescription": "Track your child's development",
+    "settings": "Settings",
+    "settingsDescription": "Customize the app experience",
+    "subscription": "Subscription",
+    "language": "Language",
+    "accessibility": "Accessibility",
+    "privacyPolicy": "Privacy Policy",
+    "support": "Support",
+    "tipsForParents": "Tips for parents",
+    "tipsDescription": "Learn how to help your child learn"
+  },
+  "subscription": {
+    "freePlan": "Free",
+    "premiumPlan": "Premium",
+    "upgrade": "Subscribe to Premium",
+    "manageSub": "Manage Subscription",
+    "restore": "Restore Purchase",
+    "features": {
+      "allGames": "All Games",
+      "unlimitedWorksheets": "Unlimited Worksheets",
+      "multipleProfiles": "Up to 5 Profiles",
+      "detailedReports": "Detailed Reports",
+      "offlineMode": "Offline Mode"
+    },
+    "priceMonth": "$9.99/month",
+    "priceYear": "$79.99/year",
+    "trialDays": "7-day free trial"
+  },
+  "errors": {
+    "networkError": "Network error. Check your internet connection.",
+    "serverError": "Server error. Please try again later.",
+    "unknownError": "An unexpected error occurred.",
+    "premiumRequired": "This content requires a Premium subscription.",
+    "profileLimitReached": "You've reached the profile limit. Subscribe to Premium to create more."
+  },
+  "categories": {
+    "numbers": "ABC & Reading",
+    "letters": "Numbers & Math",
+    "colors": "Colors & Shapes",
+    "memory": "Memory",
+    "logic": "Logic",
+    "creativity": "Creativity"
+  },
+  "onboarding": {
+    "step": "Step {{current}} of {{total}}",
+    "childName": {
+      "question": "What is your\nchild's name?",
+      "hint": "Let's personalize the experience!",
+      "placeholder": "Enter name here",
+      "continue": "Continue"
+    },
+    "childAge": {
+      "question": "How old\nis he/she?",
+      "ages": {
+        "one": "1 year",
+        "years": "{{count}} years",
+        "sixPlus": "6 years or +"
+      }
+    },
+    "childGender": {
+      "question": "How would you\nlike to refer to them?",
+      "options": {
+        "boy": "Boy",
+        "girl": "Girl",
+        "other": "Prefer not to say"
+      }
+    },
+    "childInterests": {
+      "question": "What does he/she\nlike the most?",
+      "hint": "Select as many as you want (minimum 1)",
+      "continue": "Continue",
+      "continueCount": "Continue ({{count}})",
+      "interests": {
+        "animals": "Animals",
+        "colors": "Colors",
+        "numbers": "Numbers",
+        "letters": "Letters",
+        "music": "Music",
+        "sports": "Sports",
+        "nature": "Nature",
+        "vehicles": "Vehicles",
+        "food": "Food",
+        "space": "Space"
+      }
+    },
+    "specialNeeds": {
+      "question": "Special needs?",
+      "finalize": "Finish",
+      "options": {
+        "none": "None",
+        "autism": "Autism",
+        "dyslexia": "Dyslexia",
+        "learningDifficulties": "Learning difficulties",
+        "speechDelay": "Speech delay",
+        "other": "Other"
+      }
+    },
+    "complete": {
+      "title": "All set!",
+      "features": {
+        "personalizedGames": "Personalized games",
+        "adaptedContent": "Adapted content",
+        "progressTracking": "Progress tracking"
+      },
+      "startPlaying": "Start Playing"
+    }
+  },
+  "miniGames": {
+    "traceLetters": {
+      "title": "Trace Letters",
+      "description": "Learn to write the alphabet letters"
+    },
+    "letterSounds": {
+      "title": "Letter Sounds",
+      "description": "Discover how each letter sounds"
+    },
+    "wordBuilder": {
+      "title": "Word Builder",
+      "description": "Build words with letters"
+    },
+    "traceNumbers": {
+      "title": "Trace Numbers",
+      "description": "Learn to write numbers"
+    },
+    "countObjects": {
+      "title": "Count Objects",
+      "description": "Count how many objects you see"
+    },
+    "simpleMath": {
+      "title": "Simple Math",
+      "description": "Add and subtract with fun"
+    },
+    "colorMatch": {
+      "title": "Color Match",
+      "description": "Find objects of the same color"
+    },
+    "shapeSorter": {
+      "title": "Shape Sorter",
+      "description": "Organize shapes in the right places"
+    },
+    "colorMixer": {
+      "title": "Color Mixer",
+      "description": "Mix colors and create new ones"
+    },
+    "memory": {
+      "title": "Memory Game",
+      "description": "Find matching card pairs"
+    },
+    "sequenceMemory": {
+      "title": "Remember Sequence",
+      "description": "Memorize the color sequence"
+    },
+    "puzzleSimple": {
+      "title": "Simple Puzzle",
+      "description": "Put the puzzle together"
+    },
+    "patternMatch": {
+      "title": "Patterns",
+      "description": "Complete the pattern sequence"
+    },
+    "hideSeek": {
+      "title": "Hide and Seek",
+      "description": "Find the hidden objects"
+    },
+    "drawingBoard": {
+      "title": "Drawing Board",
+      "description": "Draw freely"
+    },
+    "coloring": {
+      "title": "Coloring",
+      "description": "Paint beautiful drawings"
+    },
+    "musicCreator": {
+      "title": "Music Creator",
+      "description": "Create your own melodies"
+    },
+    "storyBuilder": {
+      "title": "Story Builder",
+      "description": "Create your own stories"
+    }
+  }
+}

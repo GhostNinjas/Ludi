@@ -1,0 +1,423 @@
+{
+  "common": {
+    "appName": "Ludi",
+    "continue": "Continuar",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "done": "Hecho",
+    "loading": "Cargando...",
+    "error": "Error",
+    "success": "¡Éxito!",
+    "ok": "OK"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "register": "Crear Cuenta",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "Olvidé mi Contraseña",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "dontHaveAccount": "¿No tienes una cuenta?",
+    "loginSuccess": "¡Inicio de sesión exitoso!",
+    "registerSuccess": "¡Cuenta creada exitosamente!",
+    "loginError": "Error al iniciar sesión",
+    "registerError": "Error al crear cuenta",
+    "invalidCredentials": "Correo o contraseña incorrectos",
+    "emailRequired": "El correo es obligatorio",
+    "passwordRequired": "La contraseña es obligatoria",
+    "passwordMinLength": "La contraseña debe tener al menos 8 caracteres"
+  },
+  "home": {
+    "welcome": "¡Hola, {{name}}!",
+    "greeting": "¡Hola,",
+    "defaultChildName": "Niño",
+    "continueWhere": "Continúa donde lo dejaste",
+    "exploreActivities": "Explorar Actividades",
+    "abc": "ABC y Letras",
+    "numbers": "Números",
+    "colors": "Colores y Formas",
+    "puzzles": "Rompecabezas",
+    "drawing": "Dibujar",
+    "stories": "Historias",
+    "all": "Todos",
+    "years": "años"
+  },
+  "games": {
+    "startGame": "Comenzar Juego",
+    "pauseGame": "Pausar",
+    "resumeGame": "Continuar",
+    "exitGame": "Salir del Juego",
+    "wellDone": "¡Muy Bien!",
+    "tryAgain": "Intentar de Nuevo",
+    "stars": "Estrellas",
+    "accuracy": "Precisión",
+    "time": "Tiempo",
+    "level": "Nivel",
+    "common": {
+      "back": "← Atrás",
+      "backToHome": "Volver al Inicio",
+      "playAgain": "Jugar de Nuevo",
+      "congratulations": "¡Felicitaciones!",
+      "levelCount": "Nivel {{level}}",
+      "clear": "Limpiar",
+      "reset": "🔄 Reiniciar",
+      "undo": "Deshacer"
+    },
+    "simpleMath": {
+      "title": "Matemáticas Simples",
+      "instruction": "Resuelve el problema:",
+      "correct": "¡Correcto!",
+      "tryAgain": "Inténtalo de nuevo",
+      "victoryMessage": "¡Acertaste {{score}} de {{total}} preguntas!",
+      "victoryPercentage": "{{percentage}}% de aciertos"
+    },
+    "memory": {
+      "title": "Juego de Memoria",
+      "moves": "Movimientos: {{moves}}",
+      "pairs": "Pares: {{matched}}/{{total}}",
+      "victory": "¡Completaste en {{moves}} movimientos!",
+      "instruction": "¡Encuentra los pares!"
+    },
+    "traceLetters": {
+      "title": "Trazar Letras",
+      "wellDone": "¡Muy bien!",
+      "letterCompleted": "¡Trazaste la letra {{letter}}!",
+      "nextLetter": "Siguiente Letra",
+      "backToMenu": "Volver al Menú",
+      "instruction": "Traza la letra:"
+    },
+    "wordBuilder": {
+      "title": "Constructor de Palabras",
+      "instruction": "Construye la palabra:",
+      "clear": "Limpiar",
+      "correct": "¡Palabra correcta!",
+      "tryAgain": "Inténtalo de nuevo",
+      "victoryMessage": "¡Completaste {{score}} palabras!"
+    },
+    "coloring": {
+      "title": "Colorear",
+      "chooseColor": "Elige un color:",
+      "clear": "Limpiar",
+      "colors": {
+        "red": "Rojo",
+        "blue": "Azul",
+        "yellow": "Amarillo",
+        "green": "Verde",
+        "orange": "Naranja",
+        "purple": "Morado",
+        "pink": "Rosa",
+        "brown": "Marrón",
+        "black": "Negro",
+        "white": "Blanco"
+      }
+    },
+    "drawingBoard": {
+      "title": "Pizarra de Dibujo",
+      "tools": "🎨 Herramientas",
+      "actions": "Acciones",
+      "undo": "Deshacer",
+      "clearAll": "Limpiar Todo",
+      "brushThickness": "Grosor del Pincel",
+      "colors": "Colores",
+      "brushSizes": {
+        "thin": "Fino",
+        "medium": "Medio",
+        "thick": "Grueso",
+        "veryThick": "Muy Grueso"
+      }
+    },
+    "colorMixer": {
+      "title": "Mezclador de Colores 🌈",
+      "modes": {
+        "free": "🎨 Libre",
+        "challenge": "🎯 Desafío"
+      },
+      "instructions": {
+        "free": "¡Elige dos colores para mezclar!",
+        "challenge": "¡Crea el color del desafío!"
+      },
+      "challenge": "Desafío {{current}}/{{total}}",
+      "hint": "💡 Pista: Mezcla",
+      "points": "Puntos: {{score}}/{{total}}",
+      "primaryColors": "Colores Primarios",
+      "colorPalette": "Paleta de Colores",
+      "mixing": "Mezclando",
+      "selectColors": "Selecciona de 2 a 3 colores arriba",
+      "thenMix": "Luego haz clic en 'Mezclar Colores'",
+      "mixColors": "Mezclar Colores",
+      "result": "Resultado:",
+      "wellDone": "¡Muy bien!",
+      "completedAll": "¡Completaste todos los {{total}} desafíos!",
+      "finalScore": "Puntuación final: {{score}}/{{total}}"
+    },
+    "musicCreator": {
+      "title": "Creador de Música",
+      "help": "🎵 Ayuda",
+      "recording": "🔴 Grabando...",
+      "notesRecorded": "📼 {{count}} notas grabadas",
+      "stop": "Detener",
+      "record": "Grabar",
+      "playing": "Reproduciendo...",
+      "play": "Reproducir",
+      "clear": "Limpiar",
+      "instruments": "Instrumentos:"
+    },
+    "sequenceMemory": {
+      "title": "Recordar Secuencia",
+      "amazing": "¡Increíble!",
+      "completed": "¡Completaste {{score}} secuencias!",
+      "exceptionalMemory": "¡Memoria excepcional!",
+      "almostThere": "¡Casi lo logras!",
+      "instruction": "Observa la secuencia de colores\ny repite en el orden correcto!",
+      "start": "Comenzar",
+      "level": "Nivel {{level}}",
+      "status": {
+        "watch": "Observa...",
+        "yourTurn": "¡Tu turno!",
+        "prepare": "Prepárate..."
+      },
+      "progress": "{{current}}/{{total}}"
+    },
+    "patternMatch": {
+      "title": "Patrones",
+      "amazing": "¡Increíble!",
+      "completed": "¡Completaste {{matched}} de {{total}} patrones!",
+      "accuracy": "{{percentage}}% de precisión",
+      "instruction": "¡Completa el patrón!",
+      "chooseMissing": "Elige la pieza que falta:"
+    }
+  },
+  "profile": {
+    "createProfile": "Crear Perfil",
+    "editProfile": "Editar Perfil",
+    "deleteProfile": "Eliminar Perfil",
+    "childName": "Nombre del Niño",
+    "ageRange": "Rango de Edad",
+    "age1to2": "1-2 años",
+    "age3to4": "3-4 años",
+    "age5to6": "5-6 años",
+    "interests": "Intereses",
+    "chooseAvatar": "Elegir Avatar",
+    "streakDays": "{{count}} días seguidos"
+  },
+  "worksheets": {
+    "title": "Actividades para Imprimir",
+    "headerTitle": "Hojas de trabajo",
+    "comingSoon": "¡Próximamente!",
+    "description": "Aquí encontrarás actividades para\nimprimir y hacer con tu hijo",
+    "download": "Descargar",
+    "share": "Compartir",
+    "print": "Imprimir",
+    "downloaded": "¡Descargado!",
+    "tracing": "Trazar",
+    "coloring": "Colorear",
+    "counting": "Contar",
+    "matching": "Emparejar"
+  },
+  "parents": {
+    "parentalGate": "Área de Padres",
+    "headerTitle": "Para los padres",
+    "verifyParent": "Responde para continuar",
+    "mathQuestion": "¿Cuánto es {{a}} + {{b}}?",
+    "holdButton": "Mantener presionado 3 segundos",
+    "confirmReset": "¿Estás seguro de que quieres restablecer el perfil del niño?",
+    "childProfile": "Perfil del Niño",
+    "name": "Nombre",
+    "age": "Edad",
+    "gender": "Género",
+    "boy": "Niño",
+    "girl": "Niña",
+    "notInformed": "No informado",
+    "interests": "Intereses",
+    "selected": "seleccionados",
+    "specialNeeds": "Necesidades especiales",
+    "none": "Ninguna",
+    "resetProfile": "Restablecer Perfil",
+    "dashboard": "Panel",
+    "progress": "Progreso",
+    "progressDescription": "Sigue el desarrollo de tu hijo",
+    "settings": "Configuración",
+    "settingsDescription": "Personaliza la experiencia de la aplicación",
+    "subscription": "Suscripción",
+    "language": "Idioma",
+    "accessibility": "Accesibilidad",
+    "privacyPolicy": "Política de Privacidad",
+    "support": "Soporte",
+    "tipsForParents": "Consejos para padres",
+    "tipsDescription": "Aprende a ayudar a tu hijo a aprender"
+  },
+  "subscription": {
+    "freePlan": "Gratis",
+    "premiumPlan": "Premium",
+    "upgrade": "Suscribirse a Premium",
+    "manageSub": "Gestionar Suscripción",
+    "restore": "Restaurar Compra",
+    "features": {
+      "allGames": "Todos los Juegos",
+      "unlimitedWorksheets": "Actividades Ilimitadas",
+      "multipleProfiles": "Hasta 5 Perfiles",
+      "detailedReports": "Informes Detallados",
+      "offlineMode": "Modo Sin Conexión"
+    },
+    "priceMonth": "$9.99/mes",
+    "priceYear": "$79.99/año",
+    "trialDays": "7 días gratis"
+  },
+  "errors": {
+    "networkError": "Error de conexión. Verifica tu internet.",
+    "serverError": "Error del servidor. Inténtalo de nuevo más tarde.",
+    "unknownError": "Ocurrió un error inesperado.",
+    "premiumRequired": "Este contenido requiere suscripción Premium.",
+    "profileLimitReached": "Has alcanzado el límite de perfiles. Suscríbete a Premium para crear más."
+  },
+  "categories": {
+    "numbers": "ABC y Lectura",
+    "letters": "Números y Matemáticas",
+    "colors": "Colores y Formas",
+    "memory": "Memoria",
+    "logic": "Lógica",
+    "creativity": "Creatividad"
+  },
+  "onboarding": {
+    "step": "Paso {{current}} de {{total}}",
+    "childName": {
+      "question": "¿Cuál es el nombre\nde tu hijo?",
+      "hint": "¡Personalicemos la experiencia!",
+      "placeholder": "Escribe el nombre aquí",
+      "continue": "Continuar"
+    },
+    "childAge": {
+      "question": "¿Cuántos años\ntiene?",
+      "ages": {
+        "one": "1 año",
+        "years": "{{count}} años",
+        "sixPlus": "6 años o +"
+      }
+    },
+    "childGender": {
+      "question": "¿Cómo te gustaría\nreferirte a él/ella?",
+      "options": {
+        "boy": "Niño",
+        "girl": "Niña",
+        "other": "Prefiero no decir"
+      }
+    },
+    "childInterests": {
+      "question": "¿Qué le gusta\nmás?",
+      "hint": "Selecciona cuantos quieras (mínimo 1)",
+      "continue": "Continuar",
+      "continueCount": "Continuar ({{count}})",
+      "interests": {
+        "animals": "Animales",
+        "colors": "Colores",
+        "numbers": "Números",
+        "letters": "Letras",
+        "music": "Música",
+        "sports": "Deportes",
+        "nature": "Naturaleza",
+        "vehicles": "Vehículos",
+        "food": "Comida",
+        "space": "Espacio"
+      }
+    },
+    "specialNeeds": {
+      "question": "¿Necesidades especiales?",
+      "finalize": "Finalizar",
+      "options": {
+        "none": "Ninguna",
+        "autism": "Autismo",
+        "dyslexia": "Dislexia",
+        "learningDifficulties": "Dificultades de aprendizaje",
+        "speechDelay": "Retraso en el habla",
+        "other": "Otra"
+      }
+    },
+    "complete": {
+      "title": "¡Todo listo!",
+      "features": {
+        "personalizedGames": "Juegos personalizados",
+        "adaptedContent": "Contenido adaptado",
+        "progressTracking": "Seguimiento del progreso"
+      },
+      "startPlaying": "Comenzar a Jugar"
+    }
+  },
+  "miniGames": {
+    "traceLetters": {
+      "title": "Trazar Letras",
+      "description": "Aprende a escribir las letras del alfabeto"
+    },
+    "letterSounds": {
+      "title": "Sonidos de Letras",
+      "description": "Descubre cómo suena cada letra"
+    },
+    "wordBuilder": {
+      "title": "Constructor de Palabras",
+      "description": "Construye palabras con letras"
+    },
+    "traceNumbers": {
+      "title": "Trazar Números",
+      "description": "Aprende a escribir números"
+    },
+    "countObjects": {
+      "title": "Contar Objetos",
+      "description": "Cuenta cuántos objetos ves"
+    },
+    "simpleMath": {
+      "title": "Matemáticas Simples",
+      "description": "Suma y resta con diversión"
+    },
+    "colorMatch": {
+      "title": "Combinar Colores",
+      "description": "Encuentra objetos del mismo color"
+    },
+    "shapeSorter": {
+      "title": "Clasificador de Formas",
+      "description": "Organiza las formas en los lugares correctos"
+    },
+    "colorMixer": {
+      "title": "Mezclador de Colores",
+      "description": "Mezcla colores y crea nuevos"
+    },
+    "memory": {
+      "title": "Juego de Memoria",
+      "description": "Encuentra los pares de cartas"
+    },
+    "sequenceMemory": {
+      "title": "Recordar Secuencia",
+      "description": "Memoriza la secuencia de colores"
+    },
+    "puzzleSimple": {
+      "title": "Rompecabezas Simple",
+      "description": "Arma el rompecabezas"
+    },
+    "patternMatch": {
+      "title": "Patrones",
+      "description": "Completa la secuencia de patrones"
+    },
+    "hideSeek": {
+      "title": "Escondite",
+      "description": "Encuentra los objetos escondidos"
+    },
+    "drawingBoard": {
+      "title": "Pizarra de Dibujo",
+      "description": "Dibuja libremente"
+    },
+    "coloring": {
+      "title": "Colorear",
+      "description": "Pinta hermosos dibujos"
+    },
+    "musicCreator": {
+      "title": "Creador de Música",
+      "description": "Crea tus propias melodías"
+    },
+    "storyBuilder": {
+      "title": "Constructor de Historias",
+      "description": "Crea tus propias historias"
+    }
+  }
+}
