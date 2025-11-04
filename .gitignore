@@ -25,15 +25,7 @@ Thumbs.db
 # Mobile
 mobile/.expo/
 mobile/android/
-
-# Mobile - iOS artifacts (keep source files)
-mobile/ios/Pods/
-mobile/ios/build/
-mobile/ios/**/*.xcworkspace
-mobile/ios/**/*.xcuserdata
-mobile/ios/.xcode.env.local
-mobile/ios/**/*.hmap
-mobile/ios/**/*.ipa
+mobile/ios/
 *.jks
 *.p8
 *.p12
