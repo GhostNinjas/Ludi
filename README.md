@@ -1,60 +1,21 @@
-# Ludi
+# 🎮 Ludi - Educational App for Kids
 
-An educational mobile app for children aged 1-6 years with games, worksheets, and parental controls.
+Educational mobile app for children aged 1-6 with interactive games, activities, and parental controls.
 
-## Tech Stack
+## 🎯 What It Does
 
-### Mobile
-- React Native + Expo + TypeScript
-- Zustand (state management)
-- expo-router (navigation)
-- i18next (internationalization)
-- Lottie (animations)
-- Expo AV (audio/video)
+- **Educational Games**: ABC tracing, numbers, colors, shapes, puzzles, drawing, music, coloring
+- **Multi-language**: Portuguese (BR), English, Spanish
+- **Parent Dashboard**: Track progress and manage settings
+- **Offline Mode**: Play without internet
 
-### Backend
-- Laravel 11 (PHP 8.3)
-- MySQL 8
-- Redis (cache/queues)
-- Laravel Sanctum (authentication)
-- Laravel Horizon (queue management)
-- OpenAPI/Swagger documentation
+## 🚀 Run Locally
 
-### Infrastructure
-- Docker + docker-compose
-- Nginx (web server)
-- PHP-FPM
-- Queue workers
-- Scheduler
+### Requirements
+- Node.js 18+
+- iOS Simulator (Mac) or Android Emulator
 
-## Project Structure
-
-```
-/ludi
-  /mobile       # React Native Expo app
-  /backend      # Laravel API
-  /infra        # Docker infrastructure
-    /nginx      # Nginx configuration
-    /scripts    # Deployment scripts
-```
-
-## Quick Start
-
-### Development
-
-```bash
-# Start all services
-make dev
-
-# Run migrations and seed
-make migrate
-make seed
-
-# Run tests
-make test
-```
-
-### Mobile Development
+### Start
 
 ```bash
 cd mobile
@@ -62,56 +23,112 @@ npm install
 npm start
 ```
 
-### Backend Development
+Press `i` for iOS, `a` for Android, or scan QR code with Expo Go app.
+
+## 📱 Publish to App Stores
+
+### 1. Create Developer Accounts
+- **Apple Developer**: $99/year at https://developer.apple.com
+- **Google Play**: $25 one-time at https://play.google.com/console
+
+### 2. Configure EAS Build
 
 ```bash
-cd backend
-composer install
-php artisan serve
-```
-
-## Environment Setup
-
-1. Copy `.env.example` to `.env` in both `mobile` and `backend`
-2. Configure database credentials
-3. Set up API keys for services
-4. Run migrations: `php artisan migrate`
-
-## Features
-
-- **Educational Games**: ABC tracing, numbers, colors, shapes, puzzles, drawing
-- **Worksheets**: Printable activities organized by age and theme
-- **Parent Dashboard**: Progress tracking, reports, controls
-- **Multi-profile**: Multiple children per account
-- **Offline Mode**: Downloaded content available offline
-- **Parental Gate**: Security for parent-only areas
-- **Subscription**: Free tier + Premium features
-- **Accessibility**: High contrast, captions, large targets
-- **Localization**: Portuguese (BR), English, Spanish
-
-## API Documentation
-
-OpenAPI documentation available at: `http://localhost:8000/api/docs`
-
-## Testing
-
-### Backend
-```bash
-cd backend
-php artisan test
-```
-
-### Mobile
-```bash
+npm install -g eas-cli
 cd mobile
-npm test
-npm run test:e2e
+eas login
+eas init
 ```
 
-## Deployment
+### 3. Build
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for production deployment instructions.
+```bash
+# iOS
+eas build --platform ios --profile production
 
-## License
+# Android
+eas build --platform android --profile production
 
-Proprietary - All Rights Reserved
+# Both
+eas build --platform all --profile production
+```
+
+### 4. Submit
+
+```bash
+# iOS
+eas submit --platform ios
+
+# Android
+eas submit --platform android
+```
+
+## 🛠️ Tech Stack
+
+- **Mobile**: React Native + Expo SDK 54 + TypeScript
+- **Navigation**: expo-router
+- **State**: Zustand
+- **Animations**: Lottie + Reanimated
+- **i18n**: i18next
+
+## 📂 Project Structure
+
+```
+mobile/
+├── app/               # Screens (expo-router)
+│   ├── (tabs)/       # Main app tabs
+│   └── games/        # Game screens
+├── components/       # Reusable components
+├── lib/             # API, stores, utils
+├── constants/       # Colors, Config
+└── assets/          # Images, sounds, fonts
+```
+
+## 🎨 Development
+
+### Add Sounds
+See `mobile/assets/sounds/README.md` for download instructions.
+
+### Add Coloring Pages
+See `mobile/assets/coloring/README.md` for SVG processing guide.
+
+### Design System
+See `mobile/DESIGN_SYSTEM.md` for colors, gradients, and UI guidelines.
+
+### Generate Letters
+Use prompt in `mobile/AI_LETTER_GENERATION_PROMPT.md` with Claude/ChatGPT.
+
+## ✅ Current Status
+
+**Production Ready** - All technical requirements met:
+- ✅ Expo SDK 54 (Xcode 26+ compatible)
+- ✅ EAS Build configured
+- ✅ iOS & Android native projects (managed)
+- ✅ App icons (1024x1024px)
+- ✅ Permissions configured
+- ✅ 17/17 expo-doctor checks passed
+
+## 📊 App Store Requirements
+
+### Before Submitting
+- [ ] Screenshots (multiple sizes)
+- [ ] App description
+- [ ] Privacy policy URL
+- [ ] Keywords & category
+- [ ] Content rating questionnaire
+
+### Bundle Info
+- **Bundle ID**: com.ludi.app
+- **Version**: 1.0.0
+- **Languages**: pt-BR, en, es
+
+## 🔗 Links
+
+- **Expo Docs**: https://docs.expo.dev
+- **EAS Build**: https://docs.expo.dev/build/introduction/
+- **App Store Connect**: https://appstoreconnect.apple.com
+- **Google Play Console**: https://play.google.com/console
+
+---
+
+**Ready to publish!** 🚀
