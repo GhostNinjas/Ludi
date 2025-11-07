@@ -113,7 +113,7 @@ Use prompt in `mobile/AI_LETTER_GENERATION_PROMPT.md` with Claude/ChatGPT.
 ### Before Submitting
 - [ ] Screenshots (multiple sizes)
 - [ ] App description
-- [ ] Privacy policy URL
+- [x] Privacy policy - See [mobile/PRIVACY_POLICY.md](mobile/PRIVACY_POLICY.md)
 - [ ] Keywords & category
 - [ ] Content rating questionnaire
 
@@ -121,6 +121,15 @@ Use prompt in `mobile/AI_LETTER_GENERATION_PROMPT.md` with Claude/ChatGPT.
 - **Bundle ID**: com.ludi.app
 - **Version**: 1.0.0
 - **Languages**: pt-BR, en, es
+
+## 🔒 Privacy & Compliance
+
+- **Privacy Policy**: [mobile/PRIVACY_POLICY.md](mobile/PRIVACY_POLICY.md)
+- **License**: MIT (see [LICENSE](LICENSE))
+- **COPPA Compliant**: Yes - No data collection, all data stored locally
+- **GDPR Compliant**: Yes - No personal data processing
+- **iOS PrivacyInfo**: Configured ([mobile/ios/Ludi/PrivacyInfo.xcprivacy](mobile/ios/Ludi/PrivacyInfo.xcprivacy))
+- **Android Permissions**: Minimal (microphone only for educational activities)
 
 ## 🔗 Links
 
