@@ -22,6 +22,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.ludi.app",
       "buildNumber": "1",
+      "deploymentTarget": "13.4",
       "infoPlist": {
         "NSMicrophoneUsageDescription": "This app uses the microphone for voice interactions.",
         "NSSpeechRecognitionUsageDescription": "This app uses speech recognition for educational activities.",
