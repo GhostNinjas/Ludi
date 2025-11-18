@@ -54,14 +54,14 @@ cd "$PROJECT_DIR"
 echo ""
 echo "🐳 Starting Docker services..."
 echo "------------------------------"
-docker-compose up -d
+docker compose up -d
 
 echo "⏳ Waiting for services to be ready (30 seconds)..."
 sleep 30
 
 # Check if MySQL is ready
 echo "🔍 Checking MySQL connection..."
-until docker-compose exec -T mysql mysqladmin ping -h"localhost" --silent 2>/dev/null; do
+until docker compose exec -T mysql mysqladmin ping -h"localhost" --silent 2>/dev/null; do
     echo "⏳ Waiting for MySQL..."
     sleep 2
 done
@@ -71,14 +71,14 @@ echo "✅ MySQL is ready"
 echo ""
 echo "🗄️  Running database migrations..."
 echo "----------------------------------"
-docker-compose exec -T app php artisan migrate --force
+docker compose exec -T app php artisan migrate --force
 
 echo "✅ Migrations completed"
 
 # Create .gitkeep files in storage
 echo ""
 echo "📂 Setting up storage directories..."
-docker-compose exec -T app sh -c "find storage -type d -exec touch {}/.gitkeep \;"
+docker compose exec -T app sh -c "find storage -type d -exec touch {}/.gitkeep \;"
 
 echo ""
 echo "✅ Backend setup completed!"
@@ -107,7 +107,7 @@ echo "========================================"
 echo ""
 echo "📊 Services Status:"
 echo ""
-docker-compose ps
+docker compose ps
 echo ""
 echo "🌐 Backend API: http://localhost:8000"
 echo "📚 API Documentation: http://localhost:8000/api/docs (after generating)"

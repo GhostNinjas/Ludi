@@ -128,7 +128,7 @@ export default function MemoryGame() {
     }, previewTime);
 
     return () => clearTimeout(timer);
-  }, [gameKey]); // Re-run when gameKey changes (on restart)
+  }, [cards.length, gameKey]); // Re-run when cards are initialized or gameKey changes
 
   const initializeGame = () => {
     // Criar pares de cartas com animação

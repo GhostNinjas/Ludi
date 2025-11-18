@@ -10,6 +10,7 @@ import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Audio } from 'expo-av';
+import * as Haptics from 'expo-haptics';
 import { useTranslation } from 'react-i18next';
 import { Colors } from '@/constants/Colors';
 
@@ -97,6 +98,14 @@ export default function SequenceMemoryGame() {
   // Play button animation and sound
   const playButton = async (colorId: ColorId) => {
     setActiveButton(colorId);
+
+    // Haptic feedback
+    try {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    } catch (error) {
+      console.log('Error with haptics:', error);
+    }
+
     const button = colorButtons.find(b => b.id === colorId);
     if (button) {
       await playTone(button.sound, 300);
@@ -105,40 +114,32 @@ export default function SequenceMemoryGame() {
     setActiveButton(null);
   };
 
-  // Play a tone using Web Audio API
+  // Play a tone using expo-av
   const playTone = async (frequency: number, duration: number) => {
     try {
-      // Check if we're on web and AudioContext is available
-      if (typeof window !== 'undefined' && (window.AudioContext || (window as any).webkitAudioContext)) {
-        const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
-        const audioContext = new AudioContext();
+      // Map frequency to pre-recorded sound files (we'll use color-specific sounds)
+      // For now, we'll use a simple beep sound that's more reliable than synthesizing
+      // In production, you could add tone-{frequency}.mp3 files for each frequency
 
-        // Create oscillator (tone generator)
-        const oscillator = audioContext.createOscillator();
-        const gainNode = audioContext.createGain();
+      // Since we don't have frequency-specific sounds, we'll use haptic feedback
+      // and a simple sound to provide feedback
+      const { sound } = await Audio.Sound.createAsync(
+        require('@/assets/sounds/correct.mp3'),
+        {
+          volume: 0.3,
+          shouldPlay: true,
+        }
+      );
 
-        oscillator.connect(gainNode);
-        gainNode.connect(audioContext.destination);
+      // Clean up after duration
+      setTimeout(async () => {
+        try {
+          await sound.unloadAsync();
+        } catch (e) {
+          console.log('Error unloading sound:', e);
+        }
+      }, duration);
 
-        // Configure the tone
-        oscillator.frequency.value = frequency;
-        oscillator.type = 'sine'; // Smooth sine wave sound
-
-        // Fade in and out for smoother sound
-        const now = audioContext.currentTime;
-        gainNode.gain.setValueAtTime(0, now);
-        gainNode.gain.linearRampToValueAtTime(0.3, now + 0.01); // Fade in
-        gainNode.gain.linearRampToValueAtTime(0, now + duration / 1000); // Fade out
-
-        // Play the tone
-        oscillator.start(now);
-        oscillator.stop(now + duration / 1000);
-
-        // Clean up
-        setTimeout(() => {
-          audioContext.close();
-        }, duration + 100);
-      }
     } catch (error) {
       console.log('Error playing tone:', error);
     }
@@ -493,11 +494,12 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 16,
+    justifyContent: 'space-between',
+    alignContent: 'space-between',
   },
   colorButton: {
-    width: 'calc(50% - 8px)',
-    height: 'calc(50% - 8px)',
+    width: '48%',
+    height: '48%',
     borderRadius: 20,
     shadowColor: '#000',
     shadowOffset: {

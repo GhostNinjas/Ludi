@@ -75,18 +75,6 @@ const INSTRUMENTS: Instrument[] = [
     ],
   },
   {
-    id: 'animals',
-    name: 'Animais',
-    emoji: '🐶',
-    color: '#95E1D3',
-    notes: [
-      { id: 'dog', name: 'Cachorro', frequency: 300, emoji: '🐶' },
-      { id: 'cat', name: 'Gato', frequency: 500, emoji: '🐱' },
-      { id: 'cow', name: 'Vaca', frequency: 150, emoji: '🐮' },
-      { id: 'bird', name: 'Pássaro', frequency: 700, emoji: '🐦' },
-    ],
-  },
-  {
     id: 'xylophone',
     name: 'Xilofone',
     emoji: '🎵',
