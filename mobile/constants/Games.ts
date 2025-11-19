@@ -11,7 +11,7 @@ export interface MiniGame {
   maxAge: number;
   difficulty: 'easy' | 'medium' | 'hard';
   color: string;
-  gradient: string[];
+  gradient: readonly string[];
   // Computed properties
   get title(): string;
   get description(): string;

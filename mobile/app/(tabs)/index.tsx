@@ -138,7 +138,7 @@ export default function HomeScreen() {
                   activeOpacity={0.8}
                 >
                   <LinearGradient
-                    colors={game.gradient}
+                    colors={[...game.gradient] as any}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
                     style={styles.gameCardGradient}

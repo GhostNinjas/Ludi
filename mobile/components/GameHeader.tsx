@@ -9,7 +9,7 @@ import { Typography, Spacing, BorderRadius } from '@/constants/Theme';
 interface GameHeaderProps {
   title: string;
   emoji?: string;
-  gradient?: string[];
+  gradient?: readonly string[];
   score?: number;
   lives?: number;
   showBack?: boolean;
@@ -40,7 +40,7 @@ export function GameHeader({
 
   return (
     <LinearGradient
-      colors={gradient}
+      colors={[...gradient] as any}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 0 }}
       style={styles.gradient}

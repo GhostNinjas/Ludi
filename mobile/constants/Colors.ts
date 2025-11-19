@@ -50,6 +50,7 @@ export const Colors = {
   // Background colors
   background: '#FFF3E0', // More vibrant warm background
   backgroundLight: '#FFF8F1', // Original warm off-white (fallback)
+  backgroundSecondary: '#F5F5F5', // Secondary background color
   surface: '#FFFFFF', // Pure white for cards
   surfaceElevated: '#FFFBF6', // Slightly elevated surfaces
 
@@ -84,26 +85,26 @@ export const Colors = {
   // Gradient definitions
   gradients: {
     // Original gradients (keep for backward compatibility)
-    primary: ['#4CA6FF', '#A974FF'], // Blue to Purple
-    warm: ['#FFA928', '#FF9BB5'], // Orange to Pink
-    success: ['#7EDDA2', '#4CA6FF'], // Green to Blue
-    creative: ['#A974FF', '#FF9BB5'], // Purple to Pink
+    primary: ['#4CA6FF', '#A974FF'] as const, // Blue to Purple
+    warm: ['#FFA928', '#FF9BB5'] as const, // Orange to Pink
+    success: ['#7EDDA2', '#4CA6FF'] as const, // Green to Blue
+    creative: ['#A974FF', '#FF9BB5'] as const, // Purple to Pink
 
     // NEW: Vibrant 3-color gradients for games
-    rainbow: ['#FF6B9D', '#FFD93D', '#6BCF7F'], // Pink → Yellow → Green
-    sky: ['#2E9CFF', '#6FB8FF', '#B3D9FF'], // Electric Blue → Light Blue → Pastel
-    sunset: ['#FF8A3D', '#FF6B9D', '#9B59D0'], // Orange → Pink → Purple
-    ocean: ['#00F5FF', '#2E9CFF', '#4CA6FF'], // Cyan → Electric Blue → Primary
-    forest: ['#6BCF7F', '#7EDDA2', '#4CA6FF'], // Green → Mint → Blue
-    candy: ['#FF10F0', '#FF6B9D', '#FFD93D'], // Neon Pink → Pink → Yellow
-    fire: ['#FF8A3D', '#FF6B9D', '#FFD93D'], // Orange → Pink → Yellow
-    unicorn: ['#FF6B9D', '#9B59D0', '#00F5FF'], // Pink → Purple → Cyan
+    rainbow: ['#FF6B9D', '#FFD93D', '#6BCF7F'] as const, // Pink → Yellow → Green
+    sky: ['#2E9CFF', '#6FB8FF', '#B3D9FF'] as const, // Electric Blue → Light Blue → Pastel
+    sunset: ['#FF8A3D', '#FF6B9D', '#9B59D0'] as const, // Orange → Pink → Purple
+    ocean: ['#00F5FF', '#2E9CFF', '#4CA6FF'] as const, // Cyan → Electric Blue → Primary
+    forest: ['#6BCF7F', '#7EDDA2', '#4CA6FF'] as const, // Green → Mint → Blue
+    candy: ['#FF10F0', '#FF6B9D', '#FFD93D'] as const, // Neon Pink → Pink → Yellow
+    fire: ['#FF8A3D', '#FF6B9D', '#FFD93D'] as const, // Orange → Pink → Yellow
+    unicorn: ['#FF6B9D', '#9B59D0', '#00F5FF'] as const, // Pink → Purple → Cyan
 
     // Game-specific vibrant gradients
-    memory: ['#9B59D0', '#FF6B9D', '#FFD93D'], // Purple → Pink → Yellow
-    math: ['#2E9CFF', '#6BCF7F', '#FFD93D'], // Blue → Green → Yellow
-    creativity: ['#FF6B9D', '#9B59D0', '#2E9CFF'], // Pink → Purple → Blue
-    logic: ['#6BCF7F', '#2E9CFF', '#9B59D0'], // Green → Blue → Purple
+    memory: ['#9B59D0', '#FF6B9D', '#FFD93D'] as const, // Purple → Pink → Yellow
+    math: ['#2E9CFF', '#6BCF7F', '#FFD93D'] as const, // Blue → Green → Yellow
+    creativity: ['#FF6B9D', '#9B59D0', '#2E9CFF'] as const, // Pink → Purple → Blue
+    logic: ['#6BCF7F', '#2E9CFF', '#9B59D0'] as const, // Green → Blue → Purple
   },
 
   // Accessibility - High contrast mode

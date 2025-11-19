@@ -70,14 +70,14 @@ const COLORING_IMAGES = [
 
 // Função flood fill com proteção de bordas
 function floodFill(
-  imageData: Uint8Array,
+  imageData: Uint8Array | Float32Array,
   x: number,
   y: number,
   width: number,
   height: number,
   fillColor: { r: number; g: number; b: number; a: number },
   tolerance: number = 10,
-  originalImage?: Uint8Array
+  originalImage?: Uint8Array | Float32Array
 ): Uint8Array {
   const newData = new Uint8Array(imageData);
 
@@ -164,7 +164,7 @@ export default function ColoringGame() {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState(COLOR_PALETTE[0].color);
   const [modifiedImage, setModifiedImage] = useState<SkImage | null>(null);
-  const [originalPixels, setOriginalPixels] = useState<Uint8Array | null>(null);
+  const [originalPixels, setOriginalPixels] = useState<Uint8Array | Float32Array | null>(null);
   const [currentImageKey, setCurrentImageKey] = useState(0);
 
   const currentImage = COLORING_IMAGES[selectedImageIndex];
@@ -539,6 +539,8 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: '#FFFFFF',
-    textShadow: '1px 1px 2px #000',
+    textShadowColor: '#000',
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 2,
   },
 });

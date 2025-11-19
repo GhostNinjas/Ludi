@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
-  Dimensions,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -15,8 +14,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from '@/constants/Colors';
 import { useOnboardingStore } from '@/lib/store/onboardingStore';
 import { useTranslation } from 'react-i18next';
-
-const { width } = Dimensions.get('window');
 
 /**
  * Child Name Onboarding Screen
@@ -177,6 +174,7 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     borderRadius: 30,
     alignItems: 'center',
+    marginTop: 32,
     shadowColor: Colors.ctaDark,
     shadowOffset: {
       width: 0,

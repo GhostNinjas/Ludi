@@ -12,7 +12,7 @@ interface GameButtonProps {
   variant?: 'primary' | 'success' | 'warning' | 'gradient';
   size?: 'small' | 'medium' | 'large';
   disabled?: boolean;
-  gradient?: string[];
+  gradient?: readonly string[];
   style?: ViewStyle;
   emoji?: string;
 }
@@ -97,8 +97,8 @@ export function GameButton({
     return [styles.button, sizeStyles[size], disabled && styles.disabled, style];
   };
 
-  const getGradientColors = () => {
-    if (gradient) return gradient;
+  const getGradientColors = (): string[] => {
+    if (gradient) return [...gradient];
 
     switch (variant) {
       case 'success':
@@ -106,7 +106,7 @@ export function GameButton({
       case 'warning':
         return [Colors.warning, Colors.ctaDark];
       case 'gradient':
-        return Colors.gradients.rainbow;
+        return [...Colors.gradients.rainbow];
       default:
         return [Colors.vibrant.electricBlue, Colors.vibrant.purplePower];
     }
@@ -129,7 +129,7 @@ export function GameButton({
         style={getButtonStyle()}
       >
         <LinearGradient
-          colors={disabled ? [Colors.border, Colors.borderLight] : getGradientColors()}
+          colors={(disabled ? [Colors.border, Colors.borderLight] : getGradientColors()) as any}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           style={styles.gradient}

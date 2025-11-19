@@ -85,6 +85,7 @@ export default function MemoryGame() {
   const [showVictory, setShowVictory] = useState(false);
   const [isPreviewMode, setIsPreviewMode] = useState(true);
   const [gameKey, setGameKey] = useState(0); // Key to force re-initialization
+  const victoryAnim = useRef(new Animated.Value(0)).current;
 
   // Inicializar o jogo
   useEffect(() => {

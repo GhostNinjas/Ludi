@@ -52,7 +52,7 @@ export const initI18n = async () => {
     // Try to get device locale (synchronous fallback)
     try {
       const locales = Localization.getLocales();
-      const deviceLocale = locales?.[0]?.languageTag || Localization.locale || 'pt-BR';
+      const deviceLocale = locales?.[0]?.languageTag || 'pt-BR';
       if (deviceLocale && typeof deviceLocale === 'string') {
         initialLanguage = getLanguageFromLocale(deviceLocale);
       }
