@@ -34,7 +34,7 @@ export default function ChildGenderScreen() {
   const handleContinue = () => {
     if (selectedGender !== null) {
       setChildGender(selectedGender);
-      router.push('/(onboarding)/child-interests');
+      router.push('/(onboarding)/special-needs');
     }
   };
 
@@ -49,9 +49,9 @@ export default function ChildGenderScreen() {
         <View style={styles.content}>
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.step}>{t('onboarding.step', { current: 3, total: 5 })}</Text>
+            <Text style={styles.step}>{t('onboarding.step', { current: 3, total: 4 })}</Text>
             <View style={styles.progressBar}>
-              <View style={[styles.progress, { width: '60%' }]} />
+              <View style={[styles.progress, { width: '75%' }]} />
             </View>
           </View>
 

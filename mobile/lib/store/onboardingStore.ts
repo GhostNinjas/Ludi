@@ -7,7 +7,6 @@ export interface ChildProfile {
   name: string;
   age: number | null;
   gender: string | null;
-  interests: string[];
   specialNeeds: string[];
 }
 
@@ -20,7 +19,6 @@ interface OnboardingStore {
   setChildName: (name: string) => void;
   setChildAge: (age: number) => void;
   setChildGender: (gender: string) => void;
-  setChildInterests: (interests: string[]) => void;
   setChildSpecialNeeds: (needs: string[]) => void;
   completeOnboarding: () => void;
   resetOnboarding: () => void;
@@ -30,7 +28,6 @@ const initialChildProfile: ChildProfile = {
   name: '',
   age: null,
   gender: null,
-  interests: [],
   specialNeeds: [],
 };
 
@@ -91,11 +88,6 @@ export const useOnboardingStore = create<OnboardingStore>()(
       setChildGender: (gender) =>
         set((state) => ({
           childProfile: { ...state.childProfile, gender },
-        })),
-
-      setChildInterests: (interests) =>
-        set((state) => ({
-          childProfile: { ...state.childProfile, interests },
         })),
 
       setChildSpecialNeeds: (needs) =>

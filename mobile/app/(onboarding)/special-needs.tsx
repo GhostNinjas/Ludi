@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 /**
  * Special Needs Onboarding Screen
- * Fifth step: Ask about special needs (including ADHD)
+ * Fourth step: Ask about special needs (including ADHD)
  */
 export default function SpecialNeedsScreen() {
   const router = useRouter();
@@ -76,7 +76,7 @@ export default function SpecialNeedsScreen() {
         <View style={styles.content}>
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.step}>{t('onboarding.step', { current: 5, total: 5 })}</Text>
+            <Text style={styles.step}>{t('onboarding.step', { current: 4, total: 4 })}</Text>
             <View style={styles.progressBar}>
               <View style={[styles.progress, { width: '100%' }]} />
             </View>
