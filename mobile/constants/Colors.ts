@@ -31,8 +31,25 @@ export const Colors = {
   successDark: '#6BC990',
   successLight: '#9FE6B8',
 
+  // NEW: Vibrant colors for maximum visual impact
+  vibrant: {
+    // Bright primary colors for kids
+    electricBlue: '#2E9CFF',
+    sunnyYellow: '#FFD93D',
+    happyGreen: '#6BCF7F',
+    playfulPink: '#FF6B9D',
+    vividOrange: '#FF8A3D',
+    purplePower: '#9B59D0',
+
+    // Neon accents (use sparingly for highlights)
+    neonCyan: '#00F5FF',
+    neonPink: '#FF10F0',
+    neonGreen: '#39FF14',
+  },
+
   // Background colors
-  background: '#FFF8F1', // Warm off-white / light beige
+  background: '#FFF3E0', // More vibrant warm background
+  backgroundLight: '#FFF8F1', // Original warm off-white (fallback)
   surface: '#FFFFFF', // Pure white for cards
   surfaceElevated: '#FFFBF6', // Slightly elevated surfaces
 
@@ -66,10 +83,27 @@ export const Colors = {
 
   // Gradient definitions
   gradients: {
+    // Original gradients (keep for backward compatibility)
     primary: ['#4CA6FF', '#A974FF'], // Blue to Purple
     warm: ['#FFA928', '#FF9BB5'], // Orange to Pink
     success: ['#7EDDA2', '#4CA6FF'], // Green to Blue
     creative: ['#A974FF', '#FF9BB5'], // Purple to Pink
+
+    // NEW: Vibrant 3-color gradients for games
+    rainbow: ['#FF6B9D', '#FFD93D', '#6BCF7F'], // Pink → Yellow → Green
+    sky: ['#2E9CFF', '#6FB8FF', '#B3D9FF'], // Electric Blue → Light Blue → Pastel
+    sunset: ['#FF8A3D', '#FF6B9D', '#9B59D0'], // Orange → Pink → Purple
+    ocean: ['#00F5FF', '#2E9CFF', '#4CA6FF'], // Cyan → Electric Blue → Primary
+    forest: ['#6BCF7F', '#7EDDA2', '#4CA6FF'], // Green → Mint → Blue
+    candy: ['#FF10F0', '#FF6B9D', '#FFD93D'], // Neon Pink → Pink → Yellow
+    fire: ['#FF8A3D', '#FF6B9D', '#FFD93D'], // Orange → Pink → Yellow
+    unicorn: ['#FF6B9D', '#9B59D0', '#00F5FF'], // Pink → Purple → Cyan
+
+    // Game-specific vibrant gradients
+    memory: ['#9B59D0', '#FF6B9D', '#FFD93D'], // Purple → Pink → Yellow
+    math: ['#2E9CFF', '#6BCF7F', '#FFD93D'], // Blue → Green → Yellow
+    creativity: ['#FF6B9D', '#9B59D0', '#2E9CFF'], // Pink → Purple → Blue
+    logic: ['#6BCF7F', '#2E9CFF', '#9B59D0'], // Green → Blue → Purple
   },
 
   // Accessibility - High contrast mode

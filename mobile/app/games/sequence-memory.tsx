@@ -7,12 +7,15 @@ import {
   Animated,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Audio } from 'expo-av';
 import * as Haptics from 'expo-haptics';
 import { useTranslation } from 'react-i18next';
 import { Colors } from '@/constants/Colors';
+import { MINI_GAMES } from '@/constants/Games';
+import { GameHeader } from '@/components/GameHeader';
+import { VictoryScreen } from '@/components/VictoryScreen';
+import { GameButton } from '@/components/GameButton';
 
 type ColorId = 'red' | 'blue' | 'green' | 'yellow';
 
@@ -37,6 +40,7 @@ const colorButtons: ColorButton[] = [
 export default function SequenceMemoryGame() {
   const { t } = useTranslation();
   const router = useRouter();
+  const gameInfo = MINI_GAMES.find(g => g.id === 'sequence-memory');
   const [sequence, setSequence] = useState<ColorId[]>([]);
   const [playerSequence, setPlayerSequence] = useState<ColorId[]>([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -215,12 +219,18 @@ export default function SequenceMemoryGame() {
     }).start();
   };
 
-  const handleRestart = () => {
+  const handlePlayAgain = () => {
     startGame();
   };
 
-  const handleBack = () => {
+  const handleHome = () => {
     router.push('/(tabs)');
+  };
+
+  const calculateStars = (): 1 | 2 | 3 => {
+    if (score >= MAX_ROUNDS) return 3; // Perfect - completed all rounds
+    if (score >= 7) return 2; // Good
+    return 1; // Try again
   };
 
   const celebrationScale = celebration.interpolate({
@@ -228,147 +238,70 @@ export default function SequenceMemoryGame() {
     outputRange: [1, 1.2],
   });
 
-  // Victory screen
-  if (showVictory) {
-    return (
-      <LinearGradient
-        colors={Colors.gradients.primary}
-        style={styles.container}
-      >
-        <SafeAreaView style={styles.safeArea}>
-          <View style={styles.victoryContainer}>
-            <Text style={styles.victoryEmoji}>🎉</Text>
-            <Text style={styles.victoryTitle}>{t('games.sequenceMemory.amazing')}</Text>
-            <Text style={styles.victoryMessage}>
-              {t('games.sequenceMemory.completed', { score })}
-            </Text>
-            <Text style={styles.victorySubtitle}>
-              {t('games.sequenceMemory.exceptionalMemory')}
-            </Text>
-
-            <TouchableOpacity
-              style={styles.restartButton}
-              onPress={handleRestart}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.restartButtonText}>{t('games.common.playAgain')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={handleBack}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.backButtonText}>{t('games.common.backToHome')}</Text>
-            </TouchableOpacity>
-          </View>
-        </SafeAreaView>
-      </LinearGradient>
-    );
-  }
-
-  // Game over screen
-  if (gameOver) {
-    return (
-      <LinearGradient
-        colors={Colors.gradients.primary}
-        style={styles.container}
-      >
-        <SafeAreaView style={styles.safeArea}>
-          <View style={styles.victoryContainer}>
-            <Text style={styles.victoryEmoji}>💪</Text>
-            <Text style={styles.victoryTitle}>{t('games.sequenceMemory.almostThere')}</Text>
-            <Text style={styles.victoryMessage}>
-              {t('games.sequenceMemory.completed', { score })}
-            </Text>
-
-            <TouchableOpacity
-              style={styles.restartButton}
-              onPress={handleRestart}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.restartButtonText}>{t('games.common.playAgain')}</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.backButton}
-              onPress={handleBack}
-              activeOpacity={0.8}
-            >
-              <Text style={styles.backButtonText}>{t('games.common.backToHome')}</Text>
-            </TouchableOpacity>
-          </View>
-        </SafeAreaView>
-      </LinearGradient>
-    );
-  }
-
   // Start screen
   if (!gameStarted) {
     return (
-      <LinearGradient
-        colors={Colors.gradients.primary}
-        style={styles.container}
-      >
-        <SafeAreaView style={styles.safeArea}>
-          <View style={styles.startContainer}>
-            <TouchableOpacity style={styles.headerButton} onPress={handleBack}>
-              <Text style={styles.headerButtonText}>{t('games.common.back')}</Text>
-            </TouchableOpacity>
+      <View style={styles.container}>
+        <GameHeader
+          title={gameInfo?.title || t('games.sequenceMemory.title')}
+          emoji={gameInfo?.emoji || '🧠'}
+          gradient={gameInfo?.gradient || Colors.gradients.ocean}
+        />
 
-            <View style={styles.startContent}>
-              <Text style={styles.startEmoji}>🧠</Text>
-              <Text style={styles.startTitle}>{t('games.sequenceMemory.title')}</Text>
-              <Text style={styles.startDescription}>
-                {t('games.sequenceMemory.instruction')}
-              </Text>
+        <LinearGradient
+          colors={[Colors.background, Colors.surfaceElevated]}
+          style={styles.content}
+        >
+          <View style={styles.startContent}>
+            <Text style={styles.startEmoji}>🧠</Text>
+            <Text style={styles.startTitle}>{t('games.sequenceMemory.title')}</Text>
+            <Text style={styles.startDescription}>
+              {t('games.sequenceMemory.instruction')}
+            </Text>
 
-              <View style={styles.instructionsContainer}>
-                <View style={styles.instruction}>
-                  <Text style={styles.instructionNumber}>1</Text>
-                  <Text style={styles.instructionText}>Observe a sequência</Text>
-                </View>
-                <View style={styles.instruction}>
-                  <Text style={styles.instructionNumber}>2</Text>
-                  <Text style={styles.instructionText}>Repita tocando as cores</Text>
-                </View>
-                <View style={styles.instruction}>
-                  <Text style={styles.instructionNumber}>3</Text>
-                  <Text style={styles.instructionText}>A cada rodada fica mais difícil!</Text>
-                </View>
+            <View style={styles.instructionsContainer}>
+              <View style={styles.instruction}>
+                <Text style={styles.instructionNumber}>1</Text>
+                <Text style={styles.instructionText}>Observe a sequência</Text>
               </View>
-
-              <TouchableOpacity
-                style={styles.startButton}
-                onPress={startGame}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.startButtonText}>{t('games.sequenceMemory.start')}</Text>
-              </TouchableOpacity>
+              <View style={styles.instruction}>
+                <Text style={styles.instructionNumber}>2</Text>
+                <Text style={styles.instructionText}>Repita tocando as cores</Text>
+              </View>
+              <View style={styles.instruction}>
+                <Text style={styles.instructionNumber}>3</Text>
+                <Text style={styles.instructionText}>A cada rodada fica mais difícil!</Text>
+              </View>
             </View>
+
+            <GameButton
+              variant="gradient"
+              gradient={gameInfo?.gradient || Colors.gradients.ocean}
+              size="large"
+              onPress={startGame}
+            >
+              {t('games.sequenceMemory.start')}
+            </GameButton>
           </View>
-        </SafeAreaView>
-      </LinearGradient>
+        </LinearGradient>
+      </View>
     );
   }
 
   // Game screen
   return (
-    <LinearGradient
-      colors={Colors.gradients.primary}
-      style={styles.container}
-    >
-      <SafeAreaView style={styles.safeArea}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.headerButton} onPress={handleBack}>
-            <Text style={styles.headerButtonText}>{t('games.common.back')}</Text>
-          </TouchableOpacity>
+    <View style={styles.container}>
+      <GameHeader
+        title={gameInfo?.title || t('games.sequenceMemory.title')}
+        emoji={gameInfo?.emoji || '🧠'}
+        gradient={gameInfo?.gradient || Colors.gradients.ocean}
+        score={score}
+      />
 
-          <Animated.View style={[styles.scoreContainer, { transform: [{ scale: celebrationScale }] }]}>
-            <Text style={styles.scoreText}>{t('games.sequenceMemory.level', { level: score + 1 })}</Text>
-          </Animated.View>
-        </View>
+      <LinearGradient
+        colors={[Colors.background, Colors.surfaceElevated]}
+        style={styles.content}
+      >
 
         {/* Status */}
         <View style={styles.statusContainer}>
@@ -410,44 +343,27 @@ export default function SequenceMemoryGame() {
             ))}
           </View>
         </View>
-      </SafeAreaView>
-    </LinearGradient>
+      </LinearGradient>
+
+      <VictoryScreen
+        visible={showVictory || gameOver}
+        score={score}
+        stars={calculateStars()}
+        message={showVictory ? t('games.sequenceMemory.amazing') : t('games.sequenceMemory.almostThere')}
+        onPlayAgain={handlePlayAgain}
+        onHome={handleHome}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.background,
   },
-  safeArea: {
+  content: {
     flex: 1,
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-  },
-  headerButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-  },
-  headerButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: Colors.textInverse,
-  },
-  scoreContainer: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-  },
-  scoreText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: Colors.textInverse,
   },
   statusContainer: {
     alignItems: 'center',
@@ -457,7 +373,7 @@ const styles = StyleSheet.create({
   statusText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.textInverse,
+    color: Colors.text,
     marginBottom: 16,
   },
   progressContainer: {
@@ -467,20 +383,19 @@ const styles = StyleSheet.create({
   progressBar: {
     width: '100%',
     height: 8,
-    backgroundColor: 'rgba(255,255,255,0.3)',
+    backgroundColor: Colors.border,
     borderRadius: 4,
     overflow: 'hidden',
     marginBottom: 8,
   },
   progressFill: {
     height: '100%',
-    backgroundColor: Colors.textInverse,
+    backgroundColor: Colors.vibrant.electricBlue,
     borderRadius: 4,
   },
   progressText: {
     fontSize: 14,
-    color: Colors.textInverse,
-    opacity: 0.8,
+    color: Colors.textSecondary,
   },
   gameContainer: {
     flex: 1,
@@ -510,15 +425,11 @@ const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 8,
   },
-  startContainer: {
-    flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 20,
-  },
   startContent: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   startEmoji: {
     fontSize: 80,
@@ -527,14 +438,13 @@ const styles = StyleSheet.create({
   startTitle: {
     fontSize: 32,
     fontWeight: 'bold',
-    color: Colors.textInverse,
+    color: Colors.text,
     marginBottom: 16,
     textAlign: 'center',
   },
   startDescription: {
     fontSize: 18,
-    color: Colors.textInverse,
-    opacity: 0.9,
+    color: Colors.textSecondary,
     textAlign: 'center',
     marginBottom: 40,
     lineHeight: 26,
@@ -547,14 +457,21 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 16,
-    backgroundColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: Colors.surface,
     padding: 16,
-    borderRadius: 12,
+    borderRadius: 16,
+    borderWidth: 2,
+    borderColor: Colors.vibrant.electricBlue + '20',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
   instructionNumber: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: Colors.textInverse,
+    color: Colors.vibrant.electricBlue,
     marginRight: 16,
     width: 32,
     textAlign: 'center',
@@ -562,86 +479,7 @@ const styles = StyleSheet.create({
   instructionText: {
     flex: 1,
     fontSize: 16,
-    color: Colors.textInverse,
+    color: Colors.text,
     fontWeight: '600',
-  },
-  startButton: {
-    backgroundColor: Colors.cta,
-    paddingVertical: 18,
-    paddingHorizontal: 60,
-    borderRadius: 30,
-    shadowColor: Colors.ctaDark,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  startButtonText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: Colors.textInverse,
-  },
-  victoryContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 40,
-  },
-  victoryEmoji: {
-    fontSize: 100,
-    marginBottom: 24,
-  },
-  victoryTitle: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    color: Colors.textInverse,
-    marginBottom: 16,
-  },
-  victoryMessage: {
-    fontSize: 24,
-    color: Colors.textInverse,
-    textAlign: 'center',
-    marginBottom: 12,
-    opacity: 0.95,
-  },
-  victorySubtitle: {
-    fontSize: 18,
-    color: Colors.textInverse,
-    textAlign: 'center',
-    marginBottom: 48,
-    opacity: 0.9,
-  },
-  restartButton: {
-    backgroundColor: Colors.cta,
-    paddingHorizontal: 40,
-    paddingVertical: 18,
-    borderRadius: 30,
-    marginBottom: 16,
-    shadowColor: Colors.ctaDark,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  restartButtonText: {
-    color: Colors.textInverse,
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  backButton: {
-    paddingHorizontal: 32,
-    paddingVertical: 14,
-  },
-  backButtonText: {
-    color: Colors.textInverse,
-    fontSize: 18,
-    fontWeight: '600',
-    opacity: 0.9,
   },
 });

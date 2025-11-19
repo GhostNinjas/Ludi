@@ -346,6 +346,13 @@
       "startPlaying": "Começar a Jogar"
     }
   },
+  "menu": {
+    "title": "Menu",
+    "home": "Início",
+    "worksheets": "Folhas de trabalho",
+    "parents": "Para os pais",
+    "language": "Idioma"
+  },
   "miniGames": {
     "traceLetters": {
       "title": "Traçar Letras",

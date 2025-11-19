@@ -346,6 +346,13 @@
       "startPlaying": "Start Playing"
     }
   },
+  "menu": {
+    "title": "Menu",
+    "home": "Home",
+    "worksheets": "Worksheets",
+    "parents": "For parents",
+    "language": "Language"
+  },
   "miniGames": {
     "traceLetters": {
       "title": "Trace Letters",

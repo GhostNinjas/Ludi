@@ -8,10 +8,13 @@ import {
   Animated,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Colors } from '@/constants/Colors';
+import { MINI_GAMES } from '@/constants/Games';
 import { useTranslation } from 'react-i18next';
+import { GameHeader } from '@/components/GameHeader';
+import { VictoryScreen } from '@/components/VictoryScreen';
+import { GameButton } from '@/components/GameButton';
 
 const { width } = Dimensions.get('window');
 const CARD_SIZE = Math.min((width - 80) / 4, 80);
@@ -73,6 +76,7 @@ const getPreviewTimeByAge = (age: number): number => {
 export default function MemoryGame() {
   const router = useRouter();
   const { t } = useTranslation();
+  const gameInfo = MINI_GAMES.find(g => g.id === 'memory');
   const [cards, setCards] = useState<Card[]>([]);
   const [flippedCards, setFlippedCards] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
@@ -81,8 +85,6 @@ export default function MemoryGame() {
   const [showVictory, setShowVictory] = useState(false);
   const [isPreviewMode, setIsPreviewMode] = useState(true);
   const [gameKey, setGameKey] = useState(0); // Key to force re-initialization
-
-  const victoryAnim = useRef(new Animated.Value(0)).current;
 
   // Inicializar o jogo
   useEffect(() => {
@@ -236,42 +238,35 @@ export default function MemoryGame() {
     }
   };
 
-  const handleBack = () => {
-    router.push('/(tabs)');
-  };
-
-  const handleRestart = () => {
+  const handlePlayAgain = () => {
     initializeGame();
     setGameKey(prev => prev + 1); // Increment to trigger preview effect
   };
 
+  const handleHome = () => {
+    router.push('/(tabs)');
+  };
+
+  const calculateStars = (): 1 | 2 | 3 => {
+    // Calculate stars based on moves
+    const perfectMoves = ANIMALS.length; // 8 pairs = 8 moves
+    if (moves <= perfectMoves) return 3;
+    if (moves <= perfectMoves * 1.5) return 2;
+    return 1;
+  };
+
   return (
-    <LinearGradient
-      colors={Colors.gradients.primary}
-      style={styles.container}
-    >
-      <SafeAreaView style={styles.safeArea}>
-        {/* Header */}
-        <View style={styles.header}>
-          <TouchableOpacity style={styles.backButton} onPress={handleBack}>
-            <Text style={styles.backButtonText}>{t('games.common.back')}</Text>
-          </TouchableOpacity>
+    <View style={styles.container}>
+      <GameHeader
+        title={gameInfo?.title || t('games.memory.title')}
+        emoji={gameInfo?.emoji || '🃏'}
+        gradient={gameInfo?.gradient || Colors.gradients.memory}
+      />
 
-          <View style={styles.stats}>
-            <Text style={styles.statsText}>{t('games.memory.moves', { moves })}</Text>
-            <Text style={styles.statsText}>{t('games.memory.pairs', { matched: matchedPairs, total: ANIMALS.length })}</Text>
-          </View>
-
-          <TouchableOpacity style={styles.restartButton} onPress={handleRestart}>
-            <Text style={styles.restartButtonText}>🔄</Text>
-          </TouchableOpacity>
-        </View>
-
-        {/* Título */}
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>{t('games.memory.title')}</Text>
-          <Text style={styles.subtitle}>{t('games.memory.instruction')}</Text>
-        </View>
+      <LinearGradient
+        colors={[Colors.background, Colors.surfaceElevated]}
+        style={styles.content}
+      >
 
         {/* Grade de Cartas */}
         <View style={styles.grid}>
@@ -347,96 +342,64 @@ export default function MemoryGame() {
           })}
         </View>
 
-        {/* Tela de Vitória */}
-        {showVictory && (
-          <Animated.View
-            style={[
-              styles.victoryOverlay,
-              {
-                opacity: victoryAnim,
-                transform: [
-                  {
-                    scale: victoryAnim.interpolate({
-                      inputRange: [0, 1],
-                      outputRange: [0.5, 1],
-                    }),
-                  },
-                ],
-              },
-            ]}
-          >
-            <View style={styles.victoryCard}>
-              <Text style={styles.victoryEmoji}>🎉</Text>
-              <Text style={styles.victoryTitle}>{t('games.common.congratulations')}</Text>
-              <Text style={styles.victoryText}>
-                {t('games.memory.victory', { moves })}
-              </Text>
+        {/* Stats Display */}
+        <View style={styles.statsContainer}>
+          <View style={styles.statBadge}>
+            <Text style={styles.statLabel}>{t('games.memory.moves', { moves })}</Text>
+          </View>
+          <View style={styles.statBadge}>
+            <Text style={styles.statLabel}>
+              {t('games.memory.pairs', { matched: matchedPairs, total: ANIMALS.length })}
+            </Text>
+          </View>
+        </View>
+      </LinearGradient>
 
-              <TouchableOpacity
-                style={styles.playAgainButton}
-                onPress={handleRestart}
-              >
-                <Text style={styles.playAgainText}>{t('games.common.playAgain')}</Text>
-              </TouchableOpacity>
-            </View>
-          </Animated.View>
-        )}
-      </SafeAreaView>
-    </LinearGradient>
+      <VictoryScreen
+        visible={showVictory}
+        score={moves}
+        stars={calculateStars()}
+        message={t('games.common.congratulations')}
+        onPlayAgain={handlePlayAgain}
+        onHome={handleHome}
+      />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: Colors.background,
   },
-  safeArea: {
+  content: {
     flex: 1,
+    paddingTop: 20,
   },
-  header: {
+  statsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+    paddingHorizontal: 20,
+    marginBottom: 16,
+  },
+  statBadge: {
+    backgroundColor: Colors.surface,
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 10,
+    borderRadius: 20,
+    borderWidth: 2,
+    borderColor: Colors.vibrant.electricBlue + '30',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 2,
   },
-  backButton: {
-    padding: 8,
-  },
-  backButtonText: {
-    color: '#FFFFFF',
-    fontSize: 18,
+  statLabel: {
+    fontSize: 14,
     fontWeight: '600',
-  },
-  stats: {
-    alignItems: 'center',
-  },
-  statsText: {
-    color: '#FFFFFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
-  restartButton: {
-    padding: 8,
-  },
-  restartButtonText: {
-    fontSize: 28,
-  },
-  titleContainer: {
-    alignItems: 'center',
-    marginVertical: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#FFFFFF',
-    textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)',
-  } as any,
-  subtitle: {
-    fontSize: 18,
-    color: '#FFFFFF',
-    opacity: 0.9,
-    marginTop: 4,
+    color: Colors.text,
   },
   grid: {
     flexDirection: 'row',
@@ -444,6 +407,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
     gap: 12,
+    marginTop: 8,
   },
   cardContainer: {
     width: CARD_SIZE,
@@ -474,80 +438,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#E3F2FD',
   },
   cardMatched: {
-    backgroundColor: '#C8E6C9',
-    opacity: 0.85,
+    backgroundColor: Colors.vibrant.happyGreen + '40',
+    opacity: 0.9,
   },
   cardBackText: {
     fontSize: 40,
     fontWeight: 'bold',
-    color: '#667eea',
+    color: Colors.vibrant.purplePower,
   },
   cardEmoji: {
     fontSize: 48,
-  },
-  victoryOverlay: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.85)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  victoryCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 24,
-    padding: 32,
-    alignItems: 'center',
-    maxWidth: '85%',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.44,
-    shadowRadius: 10.32,
-    elevation: 16,
-  },
-  victoryEmoji: {
-    fontSize: 80,
-    marginBottom: 16,
-  },
-  victoryTitle: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#667eea',
-    marginBottom: 8,
-  },
-  victoryText: {
-    fontSize: 20,
-    color: '#333',
-    textAlign: 'center',
-    marginBottom: 8,
-  },
-  victoryStats: {
-    fontSize: 18,
-    color: '#666',
-    marginBottom: 24,
-  },
-  playAgainButton: {
-    backgroundColor: Colors.cta,
-    paddingHorizontal: 32,
-    paddingVertical: 16,
-    borderRadius: 24,
-    shadowColor: Colors.ctaDark,
-    shadowOffset: {
-      width: 0,
-      height: 4,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-  playAgainText: {
-    color: Colors.textInverse,
-    fontSize: 20,
-    fontWeight: 'bold',
   },
 });

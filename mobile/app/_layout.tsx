@@ -30,11 +30,32 @@ export default function RootLayout() {
           screenOptions={{
             headerShown: false,
             animation: 'slide_from_right',
+            animationDuration: 300,
+            // iOS-style transitions
+            presentation: 'card',
+            gestureEnabled: true,
+            gestureDirection: 'horizontal',
           }}
         >
-          <Stack.Screen name="index" />
-          <Stack.Screen name="(auth)" />
-          <Stack.Screen name="(tabs)" />
+          <Stack.Screen
+            name="index"
+            options={{
+              animation: 'fade',
+            }}
+          />
+          <Stack.Screen
+            name="(auth)"
+            options={{
+              animation: 'slide_from_right',
+            }}
+          />
+          <Stack.Screen
+            name="(tabs)"
+            options={{
+              animation: 'fade',
+              animationDuration: 400,
+            }}
+          />
         </Stack>
       </SafeAreaProvider>
     </GestureHandlerRootView>

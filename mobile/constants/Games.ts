@@ -1,4 +1,5 @@
 import i18n from '@/lib/i18n';
+import { Colors } from './Colors';
 
 export interface MiniGame {
   id: string;
@@ -86,7 +87,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'easy',
     color: '#FFD700',
-    gradient: ['#FFD700', '#FFA500'],
+    gradient: Colors.gradients.rainbow,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -104,7 +105,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 5,
     difficulty: 'easy',
     color: '#FFD700',
-    gradient: ['#FFD700', '#FFA500'],
+    gradient: Colors.gradients.sunset,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -122,7 +123,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#FFD700',
-    gradient: ['#FFD700', '#FFA500'],
+    gradient: Colors.gradients.sky,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -142,7 +143,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 5,
     difficulty: 'easy',
     color: '#FF6B9D',
-    gradient: ['#FF6B9D', '#C084FC'],
+    gradient: Colors.gradients.math,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -160,7 +161,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 4,
     difficulty: 'easy',
     color: '#FF6B9D',
-    gradient: ['#FF6B9D', '#C084FC'],
+    gradient: Colors.gradients.candy,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -178,7 +179,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#FF6B9D',
-    gradient: ['#FF6B9D', '#C084FC'],
+    gradient: Colors.gradients.math,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -198,7 +199,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 3,
     difficulty: 'easy',
     color: '#A855F7',
-    gradient: ['#A855F7', '#EC4899'],
+    gradient: Colors.gradients.unicorn,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -216,7 +217,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 4,
     difficulty: 'easy',
     color: '#A855F7',
-    gradient: ['#A855F7', '#EC4899'],
+    gradient: Colors.gradients.creativity,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -234,7 +235,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#A855F7',
-    gradient: ['#A855F7', '#EC4899'],
+    gradient: Colors.gradients.rainbow,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -254,7 +255,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#667eea',
-    gradient: ['#667eea', '#764ba2'],
+    gradient: Colors.gradients.memory,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -272,7 +273,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#3B82F6',
-    gradient: ['#3B82F6', '#8B5CF6'],
+    gradient: Colors.gradients.ocean,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -292,7 +293,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 4,
     difficulty: 'easy',
     color: '#10B981',
-    gradient: ['#10B981', '#059669'],
+    gradient: Colors.gradients.logic,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -310,7 +311,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#10B981',
-    gradient: ['#10B981', '#059669'],
+    gradient: Colors.gradients.forest,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -328,7 +329,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 5,
     difficulty: 'easy',
     color: '#10B981',
-    gradient: ['#10B981', '#059669'],
+    gradient: Colors.gradients.logic,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -348,7 +349,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'easy',
     color: '#F59E0B',
-    gradient: ['#F59E0B', '#EF4444'],
+    gradient: Colors.gradients.creativity,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -366,7 +367,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'easy',
     color: '#A855F7',
-    gradient: ['#A855F7', '#EC4899'],
+    gradient: Colors.gradients.unicorn,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -384,7 +385,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'easy',
     color: '#667eea',
-    gradient: ['#667eea', '#764ba2', '#f093fb'],
+    gradient: Colors.gradients.candy,
     get title() {
       return i18n.t(this.titleKey);
     },
@@ -402,7 +403,7 @@ export const MINI_GAMES: MiniGame[] = [
     maxAge: 6,
     difficulty: 'medium',
     color: '#F59E0B',
-    gradient: ['#F59E0B', '#EF4444'],
+    gradient: Colors.gradients.fire,
     get title() {
       return i18n.t(this.titleKey);
     },

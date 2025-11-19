@@ -39,8 +39,6 @@ export default function WelcomeScreen() {
           {/* Main Content */}
           <View style={styles.centerContent}>
             <Text style={styles.emoji}>🎮</Text>
-            <Text style={styles.title}>Bem-vindo ao</Text>
-            <Text style={styles.appName}>Ludi</Text>
             <Text style={styles.subtitle}>
               Aprendizado divertido e personalizado{'\n'}para o seu filho
             </Text>

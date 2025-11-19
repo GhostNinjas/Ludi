@@ -7,7 +7,9 @@ import { useOnboardingStore } from '@/lib/store/onboardingStore';
 import { MINI_GAMES, GAME_CATEGORIES, MiniGame } from '@/constants/Games';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { LanguageSelector } from '@/components/LanguageSelector';
+import { HamburgerMenu } from '@/components/HamburgerMenu';
+import { ScreenTransition } from '@/components/ScreenTransition';
+import * as Haptics from 'expo-haptics';
 
 /**
  * Home Screen
@@ -17,8 +19,7 @@ export default function HomeScreen() {
   const router = useRouter();
   const { childProfile } = useOnboardingStore();
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [languageSelectorVisible, setLanguageSelectorVisible] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   // Filter games by child's age
   const recommendedGames = MINI_GAMES.filter(
@@ -38,22 +39,19 @@ export default function HomeScreen() {
     recommendedGames.some((game) => game.category === key)
   );
 
-  const handleGamePress = (game: MiniGame) => {
+  const handleGamePress = async (game: MiniGame) => {
+    // Haptic feedback
+    try {
+      await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    } catch (error) {
+      // Haptic not available
+    }
     // Navigate to game screen
     router.push(`/games/${game.id}` as any);
   };
 
-  // Get current language code for display
-  const getCurrentLanguageCode = () => {
-    const lang = i18n.language;
-    if (lang.startsWith('pt')) return 'PT';
-    if (lang.startsWith('en')) return 'EN';
-    if (lang.startsWith('es')) return 'ES';
-    return 'PT';
-  };
-
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <LinearGradient
         colors={Colors.gradients.primary}
         start={{ x: 0, y: 0 }}
@@ -72,96 +70,93 @@ export default function HomeScreen() {
               <Text style={styles.childName}>{childProfile.name || t('home.defaultChildName')}</Text>
             </View>
           </View>
-          <TouchableOpacity
-            style={styles.languageButton}
-            onPress={() => setLanguageSelectorVisible(true)}
-          >
-            <Text style={styles.languageText}>{getCurrentLanguageCode()}</Text>
-          </TouchableOpacity>
+          <HamburgerMenu />
         </View>
       </LinearGradient>
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.content}
+        contentContainerStyle={styles.contentContainer}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Category Filter */}
         <View style={styles.section}>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.categoriesContainer}
-          >
-            <TouchableOpacity
-              style={[
-                styles.categoryChip,
-                selectedCategory === null && styles.categoryChipActive,
-              ]}
-              onPress={() => setSelectedCategory(null)}
+          <ScreenTransition type="slide" delay={100}>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.categoriesContainer}
             >
-              <Text
-                style={[
-                  styles.categoryChipText,
-                  selectedCategory === null && styles.categoryChipTextActive,
-                ]}
-              >
-                {t('home.all')}
-              </Text>
-            </TouchableOpacity>
-            {availableCategories.map(([key, category]) => (
               <TouchableOpacity
-                key={key}
                 style={[
                   styles.categoryChip,
-                  selectedCategory === key && styles.categoryChipActive,
+                  selectedCategory === null && styles.categoryChipActive,
                 ]}
-                onPress={() => setSelectedCategory(key)}
+                onPress={() => setSelectedCategory(null)}
               >
-                <Text style={styles.categoryEmoji}>{category.emoji}</Text>
                 <Text
                   style={[
                     styles.categoryChipText,
-                    selectedCategory === key && styles.categoryChipTextActive,
+                    selectedCategory === null && styles.categoryChipTextActive,
                   ]}
                 >
-                  {category.title}
+                  {t('home.all')}
                 </Text>
               </TouchableOpacity>
-            ))}
-          </ScrollView>
+              {availableCategories.map(([key, category]) => (
+                <TouchableOpacity
+                  key={key}
+                  style={[
+                    styles.categoryChip,
+                    selectedCategory === key && styles.categoryChipActive,
+                  ]}
+                  onPress={() => setSelectedCategory(key)}
+                >
+                  <Text style={styles.categoryEmoji}>{category.emoji}</Text>
+                  <Text
+                    style={[
+                      styles.categoryChipText,
+                      selectedCategory === key && styles.categoryChipTextActive,
+                    ]}
+                  >
+                    {category.title}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </ScrollView>
+          </ScreenTransition>
         </View>
 
         {/* All Games Section */}
         <View style={styles.section}>
           <View style={styles.gamesGrid}>
-            {displayedGames.map((game) => (
-              <TouchableOpacity
-                key={game.id}
-                style={styles.gameCard}
-                onPress={() => handleGamePress(game)}
-                activeOpacity={0.8}
-              >
-                <LinearGradient
-                  colors={game.gradient}
-                  start={{ x: 0, y: 0 }}
-                  end={{ x: 1, y: 1 }}
-                  style={styles.gameCardGradient}
+            {displayedGames.map((game, index) => (
+              <ScreenTransition key={game.id} type="bounce" delay={index * 50} style={styles.gameCardWrapper}>
+                <TouchableOpacity
+                  style={styles.gameCard}
+                  onPress={() => handleGamePress(game)}
+                  activeOpacity={0.8}
                 >
-                  <Text style={styles.gameEmoji}>{game.emoji}</Text>
-                  <View style={styles.gameInfo}>
-                    <Text style={styles.gameTitle}>{game.title}</Text>
-                    <Text style={styles.gameAge}>
-                      {game.minAge}-{game.maxAge} {t('home.years')}
-                    </Text>
-                  </View>
-                </LinearGradient>
-              </TouchableOpacity>
+                  <LinearGradient
+                    colors={game.gradient}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.gameCardGradient}
+                  >
+                    <Text style={styles.gameEmoji}>{game.emoji}</Text>
+                    <View style={styles.gameInfo}>
+                      <Text style={styles.gameTitle}>{game.title}</Text>
+                      <Text style={styles.gameAge}>
+                        {game.minAge}-{game.maxAge} {t('home.years')}
+                      </Text>
+                    </View>
+                  </LinearGradient>
+                </TouchableOpacity>
+              </ScreenTransition>
             ))}
           </View>
         </View>
       </ScrollView>
-
-      <LanguageSelector
-        visible={languageSelectorVisible}
-        onClose={() => setLanguageSelectorVisible(false)}
-      />
     </SafeAreaView>
   );
 }
@@ -173,8 +168,7 @@ const styles = StyleSheet.create({
   },
   header: {
     paddingHorizontal: 20,
-    paddingBottom: 24,
-    paddingTop: 10,
+    paddingVertical: 8,
   },
   headerContent: {
     flexDirection: 'row',
@@ -184,12 +178,12 @@ const styles = StyleSheet.create({
   profileSection: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 10,
   },
   avatar: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     backgroundColor: 'rgba(255,255,255,0.25)',
     borderWidth: 2,
     borderColor: 'rgba(255,255,255,0.4)',
@@ -197,16 +191,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   avatarEmoji: {
-    fontSize: 28,
+    fontSize: 24,
   },
   greeting: {
-    fontSize: 14,
+    fontSize: 13,
     color: Colors.textInverse,
     opacity: 0.95,
     fontWeight: '500',
   },
   childName: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: 'bold',
     color: Colors.textInverse,
   },
@@ -228,6 +222,9 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
+  contentContainer: {
+    paddingBottom: 20,
+  },
   section: {
     marginTop: 20,
     paddingHorizontal: 20,
@@ -241,6 +238,7 @@ const styles = StyleSheet.create({
   categoriesContainer: {
     gap: 10,
     paddingBottom: 4,
+    justifyContent: 'center',
   },
   categoryChip: {
     flexDirection: 'row',
@@ -259,13 +257,13 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   categoryChipActive: {
-    backgroundColor: Colors.cta, // #FFA928 - Orange
-    borderColor: Colors.cta,
-    shadowColor: Colors.ctaDark,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.15,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: Colors.vibrant.electricBlue,
+    borderColor: Colors.vibrant.electricBlue,
+    shadowColor: Colors.vibrant.purplePower,
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
   },
   categoryEmoji: {
     fontSize: 16,
@@ -283,20 +281,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 14,
+    justifyContent: 'center',
+  },
+  gameCardWrapper: {
+    width: '48%',
   },
   gameCard: {
-    width: '48%',
+    width: '100%',
     aspectRatio: 1,
-    borderRadius: 20,
+    borderRadius: 24,
     overflow: 'hidden',
     backgroundColor: Colors.surface,
-    borderWidth: 2,
-    borderColor: Colors.borderLight, // #F2EBE3
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.15,
+    shadowRadius: 12,
+    elevation: 5,
   },
   gameCardGradient: {
     flex: 1,
